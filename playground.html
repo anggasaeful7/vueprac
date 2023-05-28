@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+      <ul>
+        <li v-for="item in listOfNumbers">
+          {{ item.id }}
+          <ul>
+            <li v-for="number in item.list">{{ number }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            message: "Hello Its Works",
+            listOfNumbers: [
+              {
+                name: 1,
+                id: "e98df2a6-3a89-4b4f-be98-397d843b6c7b",
+                list: [1, 2, 3, 4],
+              },
+              {
+                name: 2,
+                id: "b1e0642e-d9a7-4f6d-9b12-86ff52f73f3a",
+                list: [1, 2, 3, 4],
+              },
+              {
+                name: 3,
+                id: "d2a8d582-43e2-47bb-928d-78df37e856f3",
+                list: [1, 2, 3, 4],
+              },
+              {
+                name: 4,
+                id: "c8216d32-3ba1-442f-af5d-301ea072a1e1",
+                list: [1, 2, 3, 4],
+              },
+            ],
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
