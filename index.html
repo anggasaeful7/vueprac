@@ -4,19 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Naruto</title>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <div id="app">
+      <h3 v-if="pemeranList.length === 0">Tidak ada pemeran ....</h3>
+      <ul v-else-if="pemeranList.length % 2 === 0">
+        <li v-for="pemeran in pemeranList">{{ pemeran.name }}</li>
+      </ul>
+      <h3 v-else>There Odd the pemeran</h3>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <script>
-      new Vue({
-        el: "#app",
-        data: {
-          message: "Hello Vue.js!",
-        },
-      });
+      Vue.createApp({
+        data: () => ({
+          pemeranList: [
+            {
+              name: "Naruto",
+            },
+            {
+              name: "Sasuke",
+            },
+            {
+              name: "Hinata",
+            },
+            {
+              name: "Sakura",
+            },
+
+            {
+              name: "Choji",
+            },
+          ],
+        }),
+      }).mount("#app");
     </script>
   </body>
 </html>
