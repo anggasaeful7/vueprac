@@ -10,9 +10,27 @@
     <div id="app">
       <h3 v-if="pemeranList.length === 0">Tidak ada pemeran ....</h3>
       <ul v-else-if="pemeranList.length % 2 === 0">
-        <li v-for="pemeran in pemeranList">{{ pemeran.name }}</li>
+        <li v-for="pemeran in pemeranList">
+          <p>{{ pemeran.name }}</p>
+          <button @click="favoriteListButton(pemeran)">::Favorit</button>
+        </li>
       </ul>
       <h3 v-else>There Odd the pemeran</h3>
+      <br />
+      <h2>Favorite List</h2>
+      <ul v-if="favoriteList.length > 0">
+        <li v-for="favorite in favoriteList">{{ favorite }}</li>
+      </ul>
+      <p v-else>No Favorite</p>
+
+      <h2>Add New Pemeran</h2>
+      <pre>{{ newPemeran }}</pre>
+      <input
+        type="text"
+        v-model="newPemeran.name"
+        @keyup.enter="addNewPemeran"
+      />
+      <p v-for="pemeran in pemeranList">{{ pemeran.name }}</p>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -20,6 +38,10 @@
     <script>
       Vue.createApp({
         data: () => ({
+          newPemeran: {
+            name: "",
+          },
+          favoriteList: [],
           pemeranList: [
             {
               name: "Naruto",
@@ -33,12 +55,23 @@
             {
               name: "Sakura",
             },
-
             {
               name: "Choji",
             },
+            {
+              name: "Shikamaru",
+            },
           ],
         }),
+        methods: {
+          favoriteListButton(pemeran) {
+            this.favoriteList.push(pemeran);
+          },
+          addNewPemeran() {
+            this.pemeranList.push(this.newPemeran);
+            this.newPemeran = { name: "" };
+          },
+        },
       }).mount("#app");
     </script>
   </body>
